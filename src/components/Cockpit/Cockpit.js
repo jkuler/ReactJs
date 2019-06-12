@@ -1,13 +1,11 @@
 import React from 'react';
 
-import classes from './cockpit.css';
+import classes from './Cockpit.css';
 
 const cockpit = (Persn) => {
 
     const assignedClasses = [];
     let btnClass = '';
-    
-    btnClass = classes.Red;
 
     if (Persn.showPersons){
         btnClass = classes.Red;
@@ -26,7 +24,7 @@ const cockpit = (Persn) => {
         <h1>Hi, I'm a React App</h1>
             <p className={assignedClasses.join(' ')}>This is working</p>
             <button className={btnClass}
-                    onClick={this.togglePersonsHandler}>Togger Persons</button>
+                    onClick={Persn.clicked}>Togger Persons</button>
         </div>
     );
 };
