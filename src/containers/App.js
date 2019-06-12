@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 // import Radium, { StyleRoot } from 'radium';
 // import ErrorBoundary from './ErrorBoundary/errorBoundary';
-import classes from '..containers';
+import classes from '../containers/App.css';
 import Persons from '../components/Persons/Person-list';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 
 
@@ -20,7 +21,7 @@ class App extends Component {
   
   nameChangedHandler = (event, id) => {
    const personIndex = this.state.persons.findIndex( p => {
-     return p.userId === id;
+     return p.id === id;
    })
 
    const person = { ...this.state.persons[personIndex] };
@@ -48,36 +49,17 @@ class App extends Component {
   render(){
 
     let persons = null;
-    let btnClass = '';
 
     if (this.state.showPersons) {
-         persons = (
-          <div>
-            <Persons persons = {this.state.persons} 
+             
+        persons =   <Persons persons = {this.state.persons} 
                      clicked={this.deletePersonHandler}
-                     changed={this.nameChangedHandler} /> 
-        </div>
-         );
-
-       btnClass = classes.Red;
-    }
-    // css classes
-
-    const assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push( classes.red ) // classes
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push( classes.bold ) // classe red and bold
-    }
-
+                     changed={this.nameChangedHandler} />  
+    }    
     return (
 
          <div className={classes.App}>
-            <h1>Hi, I'm a React App</h1>
-            <p className={assignedClasses.join(' ')}>This is working</p>
-            <button className={btnClass}
-                    onClick={this.togglePersonsHandler}>Togger Persons</button>
+            <Cockpit showPersons={this.state.showPersons} persons={this.state.persons} />
             { persons }
          </div>
     
